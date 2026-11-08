@@ -8,14 +8,16 @@ The language model lives in a separate repository (QveltAI). This repo only talk
 Implemented: event contract + reducer with tests (`packages/events`), FastAPI accounts,
 revocable sessions and tenant-scoped chats with PostgreSQL RLS (`apps/api`), CI and local
 services (`docker-compose.yml`). The web shell now has responsive navigation,
-light/dark themes and en/uk/ru localization (`apps/web`). Messaging/streaming remain planned in
+light/dark themes and en/uk/ru localization (`apps/web`). The backend now provides
+durable FakeProvider messages and resumable SSE with PostgreSQL and Redis. The web
+shell does not call that API yet; real-model and browser integrations remain planned in
 `docs/PHASE1_PLAN.md` and the blueprint in `docs/blueprint/`.
 
 ## Quick start
 ```
 make setup      # npm install + Python venv for apps/api
 make test       # runs TypeScript and Python tests
-make dev        # starts Postgres(pgvector), Redis, MinIO via Docker
+make dev        # starts Postgres(pgvector) and Redis for Phase 1
 ```
 Requirements: Node 22.18+, Python 3.12+, Docker (for `make dev`).
 
@@ -26,7 +28,8 @@ or select the trusted system browser with `PLAYWRIGHT_CHROMIUM_EXECUTABLE`.
 
 The shared [event contract](packages/events/README.md) now includes runtime wire
 validation, checked JSON Schema exports for Python and strict reconnect/cancellation
-state handling. Streaming transport and model calls remain future work.
+state handling. The separate generation worker, replay protocol and required runtime
+configuration are documented in [apps/api/README.md](apps/api/README.md).
 
 For account API startup, migrations, database roles and PostgreSQL integration tests,
 see [apps/api/README.md](apps/api/README.md). The Compose database owner is not an API

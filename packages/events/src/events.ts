@@ -14,6 +14,7 @@ const stopReason = Type.Union([
 ]);
 const usage = Type.Object({
   input_tokens: count, output_tokens: count, reasoning_tokens: Type.Optional(count),
+  reported: Type.Optional(Type.Boolean()),
 }, { additionalProperties: false });
 
 function event<T extends string, P extends TProperties>(type: T, properties: P) {

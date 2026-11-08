@@ -20,7 +20,7 @@ test-postgres:
 	cd apps/api && .venv/bin/pytest -q -m integration
 
 dev:
-	docker compose up -d
+	docker compose up -d postgres redis
 
 down:
 	docker compose down

@@ -41,6 +41,11 @@ are nonnegative finite numbers. IDs and names are nonempty strings. Unknown even
 types, invalid enum values, malformed JSON and nonfinite numbers are rejected.
 The safe-integer bound is JavaScript representation safety, not a model limit.
 
+`usage.reported` is optional for compatibility; the Phase 1.3 producer always sets
+it. False means counters were unavailable and numeric zeros are placeholders.
+Neither false nor an absent flag establishes measured/billable usage. A `fake`
+model's whitespace-token counters are test data even when reported is true.
+
 `tool_call.input` deliberately stays unknown: any valid finite JSON is transport
 data, **not** a validated tool request or permission grant. The future orchestrator
 must validate the tool-specific schema, authorization and budgets separately.

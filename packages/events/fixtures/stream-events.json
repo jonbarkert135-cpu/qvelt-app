@@ -114,6 +114,20 @@
         "name": "tool",
         "input": null
       }
+    },
+    {
+      "name": "unreported_usage",
+      "event": {
+        "type": "message_complete",
+        "seq": 2,
+        "message_id": "m1",
+        "stop_reason": "cancelled",
+        "usage": {
+          "input_tokens": 0,
+          "output_tokens": 0,
+          "reported": false
+        }
+      }
     }
   ],
   "invalid": [
@@ -228,6 +242,10 @@
     {
       "name": "infinity",
       "json": "{\"type\":\"tool_result\",\"seq\":1,\"tool_use_id\":\"u\",\"ok\":true,\"output_preview\":\"secret\",\"duration_ms\":Infinity}"
+    },
+    {
+      "name": "wrong_reported_type",
+      "json": "{\"type\": \"message_complete\", \"seq\": 2, \"message_id\": \"m1\", \"stop_reason\": \"cancelled\", \"usage\": {\"input_tokens\": 0, \"output_tokens\": 0, \"reported\": \"false\"}}"
     }
   ]
 }

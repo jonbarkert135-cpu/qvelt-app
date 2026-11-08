@@ -7,6 +7,8 @@ dependencies = [
     "SQLAlchemy[asyncio]==2.0.44", "asyncpg==0.30.0",
     "alembic==1.16.5", "argon2-cffi==25.1.0",
     "jsonschema==4.25.1",
+    "redis==6.4.0",
+    "anyio==4.16.0",
 ]
 
 [project.optional-dependencies]

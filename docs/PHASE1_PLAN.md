@@ -4,8 +4,12 @@ Implemented: 1.0 (accounts, sessions, owner-scoped chats and RLS) and 1.1 (web s
 themes, responsive sidebar, en/uk/ru and browser accessibility checks). The 1.1
 composer is a draft surface; messaging and model calls remain scheduled below.
 Also implemented: 1.2, shared event-contract hardening, runtime wire validation,
-Python JSON Schema export and cross-language fixtures. Next: 1.3, authenticated
-messages, FakeProvider and resumable SSE backed by Redis Streams.
+Python JSON Schema export and cross-language fixtures. Also implemented: 1.3,
+authenticated messages, a separate FakeProvider worker, durable jobs/event journal,
+Redis Streams notifications, idempotency, cancellation and resumable SSE. This is
+the backend protocol; the web composer still does not send requests. Next: 1.4,
+the model gateway, capabilities and OpenAI-compatible provider. Browser BFF/session
+integration and streamed message rendering remain required in the UI milestones.
 
 | PR | Objective | Tests / acceptance |
 |---|---|---|

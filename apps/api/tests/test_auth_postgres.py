@@ -55,7 +55,8 @@ def postgres():
             async with engine.begin() as connection:
                 await connection.execute(text(f'GRANT USAGE ON SCHEMA public TO "{role}"'))
                 await connection.execute(text(
-                    f'GRANT SELECT, INSERT, UPDATE, DELETE ON users, sessions, chats TO "{role}"'
+                    f'GRANT SELECT, INSERT, UPDATE, DELETE ON users, sessions, chats, '
+                    f'messages, runs, run_events, run_jobs TO "{role}"'
                 ))
         finally:
             await engine.dispose()
@@ -92,10 +93,9 @@ def postgres():
         asyncio.run(cleanup())
 
 
-@pytest_asyncio.fixture
-async def api(postgres):
+def runtime_engine(postgres, pool_size=1):
     url, role = postgres
-    engine = create_async_engine(url, pool_size=1, max_overflow=0, hide_parameters=True)
+    engine = create_async_engine(url, pool_size=pool_size, max_overflow=0, hide_parameters=True)
 
     @event.listens_for(engine.sync_engine, "connect")
     def use_runtime_role(connection, record):
@@ -104,13 +104,20 @@ async def api(postgres):
         cursor.close()
         connection.commit()
 
+    return engine
+
+
+@pytest_asyncio.fixture
+async def api(postgres):
+    engine = runtime_engine(postgres)
+
     now = [datetime(2026, 11, 8, tzinfo=UTC)]
     app = create_app(engine, clock=lambda: now[0])
     try:
         async with app.router.lifespan_context(app), httpx.AsyncClient(
             transport=httpx.ASGITransport(app=app), base_url="http://test",
         ) as client:
-            yield SimpleNamespace(client=client, engine=engine, now=now)
+            yield SimpleNamespace(client=client, engine=engine, now=now, app=app)
     finally:
         await engine.dispose()
 
