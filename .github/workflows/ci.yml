@@ -20,6 +20,7 @@ jobs:
           --health-interval 5s --health-timeout 5s --health-retries 10
     env:
       QVELT_TEST_ADMIN_URL: postgresql+asyncpg://qvelt:qvelt@127.0.0.1:5432/postgres
+      NEXT_TELEMETRY_DISABLED: '1'
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -30,6 +31,13 @@ jobs:
         with:
           python-version: '3.12'
       - run: npm ci
+      - run: npm exec --workspace @qvelt/web -- playwright install --with-deps chromium
       - run: python -m venv apps/api/.venv
       - run: apps/api/.venv/bin/python -m pip install -e './apps/api[dev]'
       - run: make test typecheck lint check-skills
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: browser-checks
+          path: apps/web/test-results/
+          retention-days: 7

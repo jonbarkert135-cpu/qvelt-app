@@ -1,4 +1,9 @@
-# Phase 1 plan (draft; the agent refines it and waits for approval)
+# Phase 1 plan
+
+Implemented: 1.0 (accounts, sessions, owner-scoped chats and RLS) and 1.1 (web shell,
+themes, responsive sidebar, en/uk/ru and browser accessibility checks). The 1.1
+composer is a draft surface; messaging and model calls remain scheduled below.
+Next: 1.2, shared event-contract hardening and Python JSON Schema export.
 
 | PR | Objective | Tests / acceptance |
 |---|---|---|

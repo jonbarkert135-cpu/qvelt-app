@@ -7,7 +7,8 @@ The language model lives in a separate repository (QveltAI). This repo only talk
 ## Status
 Implemented: event contract + reducer with tests (`packages/events`), FastAPI accounts,
 revocable sessions and tenant-scoped chats with PostgreSQL RLS (`apps/api`), CI and local
-services (`docker-compose.yml`). The web UI and streaming are still planned in
+services (`docker-compose.yml`). The web shell now has responsive navigation,
+light/dark themes and en/uk/ru localization (`apps/web`). Messaging/streaming remain planned in
 `docs/PHASE1_PLAN.md` and the blueprint in `docs/blueprint/`.
 
 ## Quick start
@@ -18,6 +19,11 @@ make dev        # starts Postgres(pgvector), Redis, MinIO via Docker
 ```
 Requirements: Node 22+, Python 3.12+, Docker (for `make dev`).
 
+Run the web shell with `npm run dev --workspace @qvelt/web`. See
+[apps/web/README.md](apps/web/README.md) for browser checks and its current scope.
+`make test` includes production-build browser tests; install Playwright's Chromium
+or select the trusted system browser with `PLAYWRIGHT_CHROMIUM_EXECUTABLE`.
+
 For account API startup, migrations, database roles and PostgreSQL integration tests,
 see [apps/api/README.md](apps/api/README.md). The Compose database owner is not an API
 runtime role; the API rejects roles that bypass RLS. Authentication is a development
@@ -26,7 +32,7 @@ skeleton; see ADR-0003 before exposing it publicly.
 ## Layout
 ```
 apps/api            FastAPI service (Python)
-apps/web            Next.js app (created in PR 1.1)
+apps/web            Next.js shell, localization, tokens and browser checks
 packages/events     shared stream-event types + reducer (TypeScript)
 docs/blueprint      architecture blueprint (put the exported file here)
 docs/adr            architecture decision records

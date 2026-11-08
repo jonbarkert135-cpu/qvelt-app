@@ -15,7 +15,8 @@ Read matching `SKILL.md` files before each task; AGENTS.md and ADRs take precede
 | tdd-small-steps | Every code change |
 | security-untrusted-input | Auth, tenancy, files, tools, repositories and URLs |
 | math-and-numerics-check | Calculations, units, budgets and expiry boundaries |
+| qvelt-chat-ui-design | Chat UI, responsive layouts, localization and accessibility |
 
-`qvelt-chat-ui-design` has not been authored yet. UI work must first supply that
-skill and read `docs/DESIGN_BRIEF.md`; backend work does not require it.
+The UI skill is original project guidance based on `docs/DESIGN_BRIEF.md`, added
+under the owner's authorization to create missing skills and continue development.
 Do not fetch third-party skills without the vetting in `docs/skills/SKILLS.md`.

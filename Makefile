@@ -6,6 +6,7 @@ setup:
 
 lint:
 	cd apps/api && .venv/bin/ruff check .
+	npm run lint
 
 typecheck:
 	npm run typecheck
