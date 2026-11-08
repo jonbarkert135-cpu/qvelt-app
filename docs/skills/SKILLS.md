@@ -1,6 +1,7 @@
 # Third-party skills: candidates and vetting policy
 
-Status: NOTHING is installed. These are candidates found via public listings and README pages (not full audits).
+Status: one reviewed text-only accessibility skill is installed; see the audit below.
+The older candidate table records suggestions from public listings, not full audits.
 Star counts and rankings change; verify on the canonical repository before relying on them.
 
 ## Vetting policy (mandatory before installing any third-party skill)
@@ -15,7 +16,23 @@ Star counts and rankings change; verify on the canonical repository before relyi
 6. A skill never overrides AGENTS.md or ADRs. If it conflicts, follow AGENTS.md and report the conflict.
 7. Install only on the owner's approval, one skill at a time, with a short note in `docs/adr/`.
 
-## Candidates
+## Uploaded design archives: audit
+
+| Upload | Identification | Result |
+| --- | --- | --- |
+| `agent-skills-main.zip` | `sergiodxa/agent-skills`, archive commit `40e21b46189d5c7de6610b68a25280af863f8775`, MIT | Installed only `frontend-accessibility-best-practices`; SKILL.md, all 7 rules and LICENSE read completely and verified byte-for-byte against canonical raw GitHub files at that commit. No scripts. |
+| `AI-Agents-public-main.zip` | README identifies `vasilyu1983/AI-Agents-public`; archive commit `3424d6f5e94010409da012eeb1cb84aaecec88b3`; root MIT | Indexed; UI/UX candidate includes many references/assets. Not fully reviewed, not installed. |
+| `ui-ux-pro-max-skill-main.zip` | README identifies `nextlevelbuilder/ui-ux-pro-max-skill`; archive commit `b7e3af80f6e331f6fb456667b82b12cade7c9d35`; root MIT | Indexed; contains symlink entries for data/scripts, tool-dependent workflows and API-key-based generation elsewhere in the bundle. Not fully reviewed, not installed. No extraction of symlinks. |
+| `skills-main.zip` | README identifies `semgrep/skills`; archive commit `90cc990a535098a84950b18d8cf770e097da1c77`; Semgrep Rules License v1.0 | Security skills rather than design skills. Not installed; no MIT/Apache licensing assumption. |
+| `ai-agents-skills-master.zip` | Unknown: executor transfer limit exceeded (32 MiB) | Not downloaded or inspected. No claims about provenance, license or safety. |
+
+Only the first installed subset has been fully vetted. Archive comments identify
+candidate commits; the accessibility files were additionally verified remotely.
+The other bundles remain attachments, not active project instructions. Original
+upstream React Aria examples do not authorize a framework migration or new dependencies.
+44×44 CSS px is the project's tap-area target, not a claim of full AAA certification.
+
+### Earlier candidates
 
 | Area | Candidate | What it offers (per listings) | License note (verify) | Recommendation |
 |---|---|---|---|---|

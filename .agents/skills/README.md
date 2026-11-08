@@ -20,3 +20,12 @@ Read matching `SKILL.md` files before each task; AGENTS.md and ADRs take precede
 The UI skill is original project guidance based on `docs/DESIGN_BRIEF.md`, added
 under the owner's authorization to create missing skills and continue development.
 Do not fetch third-party skills without the vetting in `docs/skills/SKILLS.md`.
+
+## Vetted design reference
+
+For UI work also read
+`vendor/frontend-accessibility-best-practices@40e21b46189d5c7de6610b68a25280af863f8775/SKILL.md`
+and the relevant files in its `rules/`. All files are pinned, reviewed text under MIT;
+`VETTING.json` records upstream verification and checksums. The React Aria imports
+and Key Files in those examples are not QVELT dependencies/paths: retain our Radix
+Dialog and native controls. The QVELT brief and primary ponytail skill take precedence.

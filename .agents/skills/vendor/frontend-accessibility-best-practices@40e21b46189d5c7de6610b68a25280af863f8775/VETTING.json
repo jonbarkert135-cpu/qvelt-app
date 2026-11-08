@@ -1,0 +1,26 @@
+{
+  "upstream_repository": "https://github.com/sergiodxa/agent-skills",
+  "commit": "40e21b46189d5c7de6610b68a25280af863f8775",
+  "upstream_path": "skills/frontend-accessibility-best-practices",
+  "archive_sha256": "f54c6a1ed0f24db6281a95e0e6d3eb01a33ce02b6d8ee7b7d86f278430cb77d8",
+  "license": "MIT",
+  "verified_against_canonical_source": true,
+  "scope": "Documentation only: SKILL.md, all seven rules and LICENSE read in full. No scripts or runtime fetches.",
+  "integration_notes": [
+    "QVELT uses its existing Radix Dialog; upstream React Aria imports are examples, not required dependencies.",
+    "Upstream Key Files do not identify files in QVELT.",
+    "44px is our comfort target; no claim of full WCAG AAA conformance.",
+    "Follow QVELT brief, original branding and ponytail before upstream stylistic preferences."
+  ],
+  "files": {
+    "LICENSE": "518cf68c2ac2bcc610324fcfad3f7102cb11ab89f4064588be44146c0009172e",
+    "SKILL.md": "82dbc5d54d7ed45a836cd7a0e956511dc258c558cf6829fbaf7c789d7a593c47",
+    "rules/aria-live-regions.md": "9078832fc9b0a5de86db7f6c8bd1e2335ae44e7ec155779eb474a9e0bb0ae234",
+    "rules/focus-management.md": "539f74d971a491e42e33d3228e54f9c0de35ad3e9bb708a9c3bce9e09db54cb8",
+    "rules/keyboard-navigation.md": "ef1e749b962df75507c6e4f4cad6bcd0cd500128e001f50787dbab3094bcc030",
+    "rules/reduced-motion.md": "6046dea0d95762bb420f9e634645197cedbb7d78f9fcb2b6b5fec9a79e4c5534",
+    "rules/screen-reader-sr-only.md": "5ee5db6490b1ce484c9cc34f64b9c8ced042d84080b5da15d5247d685954bca6",
+    "rules/semantic-html-landmarks.md": "f658e4905d56d8b68e834fbc4ac3f81ebea6d989d97e8ffbad447903c2fcdc49",
+    "rules/touch-targets.md": "bdb4214ae98b0f24a5e0bb4678e4ce7b621a75eaee8d9cf866e2c69a7f9bf9f9"
+  }
+}

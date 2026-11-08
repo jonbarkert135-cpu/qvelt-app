@@ -6,6 +6,7 @@ description: Design and verify QVELT chat interfaces with readable content, resp
 # QVELT interface
 
 Read `docs/DESIGN_BRIEF.md`, the current UI and relevant blueprint sections first.
+Also read the pinned accessibility skill listed in `.agents/skills/README.md`.
 Keep ponytail as the primary coding skill. Reuse the project's design tokens and
 native HTML before adding component abstractions or libraries.
 

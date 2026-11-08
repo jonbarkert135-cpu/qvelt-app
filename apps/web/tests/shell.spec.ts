@@ -72,6 +72,20 @@ test("sidebar collapse preserves access to navigation", async ({ page }) => {
   await expect(page.getByRole("navigation", { name: "Workspace" })).toBeVisible();
 });
 
+test("active touch controls provide 44px targets on mobile and desktop", async ({ page }) => {
+  for (const width of [390, 1440]) {
+    await page.setViewportSize({ width, height: 960 });
+    await page.goto("/");
+    if (width === 390) await page.getByRole("button", { name: "Open navigation" }).click();
+    const controls = page.locator("button:visible:not(:disabled), select:visible:not(:disabled)");
+    for (const control of await controls.all()) {
+      const box = await control.boundingBox();
+      expect(box?.width).toBeGreaterThanOrEqual(44);
+      expect(box?.height).toBeGreaterThanOrEqual(44);
+    }
+  }
+});
+
 test("untrusted preference cookies fall back to known values", async ({ page, context }) => {
   await context.addCookies([
     { name: "qvelt-locale", value: "unknown", url: "http://127.0.0.1:3100" },
