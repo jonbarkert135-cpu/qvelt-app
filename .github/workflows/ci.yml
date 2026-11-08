@@ -1,0 +1,35 @@
+name: checks
+on: [push, pull_request]
+
+permissions:
+  contents: read
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: pgvector/pgvector:pg16
+        env:
+          POSTGRES_USER: qvelt
+          POSTGRES_PASSWORD: qvelt
+          POSTGRES_DB: qvelt
+        ports: ['5432:5432']
+        options: >-
+          --health-cmd "pg_isready -U qvelt"
+          --health-interval 5s --health-timeout 5s --health-retries 10
+    env:
+      QVELT_TEST_ADMIN_URL: postgresql+asyncpg://qvelt:qvelt@127.0.0.1:5432/postgres
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: npm ci
+      - run: python -m venv apps/api/.venv
+      - run: apps/api/.venv/bin/python -m pip install -e './apps/api[dev]'
+      - run: make test typecheck lint check-skills

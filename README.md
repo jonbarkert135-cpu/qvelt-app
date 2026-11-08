@@ -5,8 +5,9 @@ The language model lives in a separate repository (QveltAI). This repo only talk
 `ModelProvider` interface (see `docs/adr/0002-model-agnostic-provider.md`).
 
 ## Status
-Starter scaffold. Implemented: event contract + reducer with tests (`packages/events`), FastAPI health
-endpoint (`apps/api`), CI, local services (`docker-compose.yml`). Everything else is planned in
+Implemented: event contract + reducer with tests (`packages/events`), FastAPI accounts,
+revocable sessions and tenant-scoped chats with PostgreSQL RLS (`apps/api`), CI and local
+services (`docker-compose.yml`). The web UI and streaming are still planned in
 `docs/PHASE1_PLAN.md` and the blueprint in `docs/blueprint/`.
 
 ## Quick start
@@ -16,6 +17,11 @@ make test       # runs TypeScript and Python tests
 make dev        # starts Postgres(pgvector), Redis, MinIO via Docker
 ```
 Requirements: Node 22+, Python 3.12+, Docker (for `make dev`).
+
+For account API startup, migrations, database roles and PostgreSQL integration tests,
+see [apps/api/README.md](apps/api/README.md). The Compose database owner is not an API
+runtime role; the API rejects roles that bypass RLS. Authentication is a development
+skeleton; see ADR-0003 before exposing it publicly.
 
 ## Layout
 ```

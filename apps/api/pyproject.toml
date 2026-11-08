@@ -2,10 +2,14 @@
 name = "qvelt-api"
 version = "0.0.1"
 requires-python = ">=3.12"
-dependencies = ["fastapi>=0.115", "uvicorn>=0.30", "pydantic>=2.8"]
+dependencies = [
+    "fastapi>=0.115", "uvicorn>=0.30", "pydantic>=2.8",
+    "SQLAlchemy[asyncio]==2.0.44", "asyncpg==0.30.0",
+    "alembic==1.16.5", "argon2-cffi==25.1.0",
+]
 
 [project.optional-dependencies]
-dev = ["pytest>=8", "httpx>=0.27", "ruff>=0.6"]
+dev = ["pytest>=8", "httpx>=0.27", "ruff>=0.6", "pytest-asyncio==1.2.0"]
 
 [build-system]
 requires = ["setuptools>=68"]
@@ -20,3 +24,5 @@ target-version = "py312"
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+asyncio_mode = "auto"
+markers = ["integration: requires an explicit PostgreSQL admin test URL"]

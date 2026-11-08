@@ -1,4 +1,4 @@
-.PHONY: setup lint typecheck test dev down check-skills link-skills
+.PHONY: setup lint typecheck test test-postgres dev down check-skills link-skills
 
 setup:
 	npm install
@@ -13,6 +13,10 @@ typecheck:
 test:
 	npm test
 	cd apps/api && .venv/bin/pytest -q
+
+test-postgres:
+	@: "$${QVELT_TEST_ADMIN_URL:?Set QVELT_TEST_ADMIN_URL for disposable PostgreSQL tests}"
+	cd apps/api && .venv/bin/pytest -q -m integration
 
 dev:
 	docker compose up -d

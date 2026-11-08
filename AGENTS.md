@@ -3,6 +3,7 @@
 Product, model and ecosystem name: **QVELT**. Do not use "Wild AI".
 
 ## Read first
+0. `.agents/skills/ponytail/SKILL.md` — the owner's primary skill for all coding tasks.
 1. This file, `QVELT.md`, `docs/PHASE1_PLAN.md`, `docs/adr/`.
 2. `docs/blueprint/` (the architecture blueprint). Labels: Reference design = intended; Unknown = do not assume.
 
@@ -24,6 +25,10 @@ Product, model and ecosystem name: **QVELT**. Do not use "Wild AI".
 9. **User data is never used for training** unless the user opted in (default OFF). No training export in Phase 1.
 
 ## Skills (MANDATORY for every task)
+The owner-provided `ponytail` is the primary coding skill (default intensity: full).
+Read it first and choose the smallest complete solution. It never removes required
+security checks, existing test infrastructure, or the baseline skills below.
+
 1. At the start of EVERY task, before writing code or running commands, read `.agents/skills/README.md` and open the
    `SKILL.md` of every skill whose description matches the task (several can apply).
 2. Baseline: `verify-before-claiming` and `tdd-small-steps` for any code change; `security-untrusted-input` for anything
