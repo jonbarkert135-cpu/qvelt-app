@@ -17,12 +17,16 @@ make setup      # npm install + Python venv for apps/api
 make test       # runs TypeScript and Python tests
 make dev        # starts Postgres(pgvector), Redis, MinIO via Docker
 ```
-Requirements: Node 22+, Python 3.12+, Docker (for `make dev`).
+Requirements: Node 22.18+, Python 3.12+, Docker (for `make dev`).
 
 Run the web shell with `npm run dev --workspace @qvelt/web`. See
 [apps/web/README.md](apps/web/README.md) for browser checks and its current scope.
 `make test` includes production-build browser tests; install Playwright's Chromium
 or select the trusted system browser with `PLAYWRIGHT_CHROMIUM_EXECUTABLE`.
+
+The shared [event contract](packages/events/README.md) now includes runtime wire
+validation, checked JSON Schema exports for Python and strict reconnect/cancellation
+state handling. Streaming transport and model calls remain future work.
 
 For account API startup, migrations, database roles and PostgreSQL integration tests,
 see [apps/api/README.md](apps/api/README.md). The Compose database owner is not an API

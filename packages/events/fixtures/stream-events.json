@@ -1,0 +1,233 @@
+{
+  "valid": [
+    {
+      "name": "start",
+      "event": {
+        "type": "message_start",
+        "seq": 1,
+        "message_id": "m1",
+        "chat_id": "c1",
+        "model": "fake"
+      }
+    },
+    {
+      "name": "unicode_text",
+      "event": {
+        "type": "text_delta",
+        "seq": 2,
+        "part_id": "p1",
+        "text": "Привіт 🌍\nمرحبا"
+      }
+    },
+    {
+      "name": "status",
+      "event": {
+        "type": "status",
+        "seq": 3,
+        "part_id": "s1",
+        "summary": "Reading"
+      }
+    },
+    {
+      "name": "tool_call",
+      "event": {
+        "type": "tool_call",
+        "seq": 4,
+        "part_id": "t1",
+        "tool_use_id": "u1",
+        "name": "read_file",
+        "input": {
+          "path": "src/main.py",
+          "args": [
+            0,
+            true,
+            null,
+            {}
+          ]
+        }
+      }
+    },
+    {
+      "name": "tool_progress",
+      "event": {
+        "type": "tool_progress",
+        "seq": 5,
+        "tool_use_id": "u1",
+        "stream": "stdout",
+        "chunk": "ok\n"
+      }
+    },
+    {
+      "name": "tool_result",
+      "event": {
+        "type": "tool_result",
+        "seq": 6,
+        "tool_use_id": "u1",
+        "ok": true,
+        "output_preview": "ok",
+        "duration_ms": 0.5,
+        "output_ref": "log1"
+      }
+    },
+    {
+      "name": "artifact",
+      "event": {
+        "type": "artifact_created",
+        "seq": 7,
+        "artifact_id": "a1",
+        "version": 1,
+        "kind": "code",
+        "title": "Приклад"
+      }
+    },
+    {
+      "name": "complete",
+      "event": {
+        "type": "message_complete",
+        "seq": 8,
+        "message_id": "m1",
+        "stop_reason": "cancelled",
+        "usage": {
+          "input_tokens": 0,
+          "output_tokens": 3,
+          "reasoning_tokens": 0
+        }
+      }
+    },
+    {
+      "name": "error",
+      "event": {
+        "type": "error",
+        "seq": 9,
+        "code": "unavailable",
+        "message": "Try later",
+        "retryable": true
+      }
+    },
+    {
+      "name": "null_tool_input",
+      "event": {
+        "type": "tool_call",
+        "seq": 1,
+        "part_id": "t1",
+        "tool_use_id": "u1",
+        "name": "tool",
+        "input": null
+      }
+    }
+  ],
+  "invalid": [
+    {
+      "name": "zero_seq",
+      "json": "{\"type\": \"text_delta\", \"seq\": 0, \"part_id\": \"p1\", \"text\": \"Привіт 🌍\\nمرحبا\"}"
+    },
+    {
+      "name": "negative_seq",
+      "json": "{\"type\": \"text_delta\", \"seq\": -1, \"part_id\": \"p1\", \"text\": \"Привіт 🌍\\nمرحبا\"}"
+    },
+    {
+      "name": "fractional_seq",
+      "json": "{\"type\": \"text_delta\", \"seq\": 1.5, \"part_id\": \"p1\", \"text\": \"Привіт 🌍\\nمرحبا\"}"
+    },
+    {
+      "name": "boolean_seq",
+      "json": "{\"type\": \"text_delta\", \"seq\": true, \"part_id\": \"p1\", \"text\": \"Привіт 🌍\\nمرحبا\"}"
+    },
+    {
+      "name": "unsafe_seq",
+      "json": "{\"type\": \"text_delta\", \"seq\": 9007199254740992, \"part_id\": \"p1\", \"text\": \"Привіт 🌍\\nمرحبا\"}"
+    },
+    {
+      "name": "string_seq",
+      "json": "{\"type\": \"text_delta\", \"seq\": \"1\", \"part_id\": \"p1\", \"text\": \"Привіт 🌍\\nمرحبا\"}"
+    },
+    {
+      "name": "unknown_event",
+      "json": "{\"type\": \"unknown\", \"seq\": 2, \"part_id\": \"p1\", \"text\": \"Привіт 🌍\\nمرحبا\"}"
+    },
+    {
+      "name": "empty_part",
+      "json": "{\"type\": \"text_delta\", \"seq\": 2, \"part_id\": \"\", \"text\": \"Привіт 🌍\\nمرحبا\"}"
+    },
+    {
+      "name": "unknown_kind",
+      "json": "{\"type\": \"artifact_created\", \"seq\": 7, \"artifact_id\": \"a1\", \"version\": 1, \"kind\": \"javascript\", \"title\": \"Приклад\"}"
+    },
+    {
+      "name": "zero_version",
+      "json": "{\"type\": \"artifact_created\", \"seq\": 7, \"artifact_id\": \"a1\", \"version\": 0, \"kind\": \"code\", \"title\": \"Приклад\"}"
+    },
+    {
+      "name": "negative_duration",
+      "json": "{\"type\": \"tool_result\", \"seq\": 6, \"tool_use_id\": \"u1\", \"ok\": true, \"output_preview\": \"ok\", \"duration_ms\": -1, \"output_ref\": \"log1\"}"
+    },
+    {
+      "name": "empty_ref",
+      "json": "{\"type\": \"tool_result\", \"seq\": 6, \"tool_use_id\": \"u1\", \"ok\": true, \"output_preview\": \"ok\", \"duration_ms\": 0.5, \"output_ref\": \"\"}"
+    },
+    {
+      "name": "string_retryable",
+      "json": "{\"type\": \"error\", \"seq\": 9, \"code\": \"unavailable\", \"message\": \"Try later\", \"retryable\": \"yes\"}"
+    },
+    {
+      "name": "unknown_stop",
+      "json": "{\"type\": \"message_complete\", \"seq\": 8, \"message_id\": \"m1\", \"stop_reason\": \"finished\", \"usage\": {\"input_tokens\": 0, \"output_tokens\": 3, \"reasoning_tokens\": 0}}"
+    },
+    {
+      "name": "unknown_field",
+      "json": "{\"type\": \"text_delta\", \"seq\": 2, \"part_id\": \"p1\", \"text\": \"Привіт 🌍\\nمرحبا\", \"owner_id\": \"other\"}"
+    },
+    {
+      "name": "missing_input",
+      "json": "{\"type\": \"tool_call\", \"seq\": 4, \"part_id\": \"t1\", \"tool_use_id\": \"u1\", \"name\": \"read_file\"}"
+    },
+    {
+      "name": "missing_seq",
+      "json": "{\"type\": \"text_delta\", \"part_id\": \"p1\", \"text\": \"Привіт 🌍\\nمرحبا\"}"
+    },
+    {
+      "name": "missing_text",
+      "json": "{\"type\": \"text_delta\", \"seq\": 2, \"part_id\": \"p1\"}"
+    },
+    {
+      "name": "negative_usage",
+      "json": "{\"type\": \"message_complete\", \"seq\": 8, \"message_id\": \"m1\", \"stop_reason\": \"cancelled\", \"usage\": {\"input_tokens\": -1, \"output_tokens\": 3, \"reasoning_tokens\": 0}}"
+    },
+    {
+      "name": "fractional_usage",
+      "json": "{\"type\": \"message_complete\", \"seq\": 8, \"message_id\": \"m1\", \"stop_reason\": \"cancelled\", \"usage\": {\"input_tokens\": 0, \"output_tokens\": 0.5, \"reasoning_tokens\": 0}}"
+    },
+    {
+      "name": "extra_usage",
+      "json": "{\"type\": \"message_complete\", \"seq\": 8, \"message_id\": \"m1\", \"stop_reason\": \"cancelled\", \"usage\": {\"input_tokens\": 0, \"output_tokens\": 3, \"reasoning_tokens\": 0, \"other\": 0}}"
+    },
+    {
+      "name": "unsafe_usage",
+      "json": "{\"type\": \"message_complete\", \"seq\": 8, \"message_id\": \"m1\", \"stop_reason\": \"cancelled\", \"usage\": {\"input_tokens\": 0, \"output_tokens\": 9007199254740992, \"reasoning_tokens\": 0}}"
+    },
+    {
+      "name": "null",
+      "json": "null"
+    },
+    {
+      "name": "array",
+      "json": "[]"
+    },
+    {
+      "name": "malformed",
+      "json": "{"
+    },
+    {
+      "name": "nan",
+      "json": "{\"type\":\"text_delta\",\"seq\":NaN,\"part_id\":\"p\",\"text\":\"secret\"}"
+    },
+    {
+      "name": "overflow",
+      "json": "{\"type\":\"tool_call\",\"seq\":1,\"part_id\":\"p\",\"tool_use_id\":\"u\",\"name\":\"x\",\"input\":1e999}"
+    },
+    {
+      "name": "infinity",
+      "json": "{\"type\":\"tool_result\",\"seq\":1,\"tool_use_id\":\"u\",\"ok\":true,\"output_preview\":\"secret\",\"duration_ms\":Infinity}"
+    }
+  ]
+}

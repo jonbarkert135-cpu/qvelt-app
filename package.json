@@ -1,6 +1,7 @@
 {
   "name": "qvelt-app",
   "private": true,
+  "engines": { "node": ">=22.18.0" },
   "workspaces": ["packages/*", "apps/web"],
   "scripts": {
     "typecheck": "npm run typecheck --workspaces --if-present",

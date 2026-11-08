@@ -3,7 +3,9 @@
 Implemented: 1.0 (accounts, sessions, owner-scoped chats and RLS) and 1.1 (web shell,
 themes, responsive sidebar, en/uk/ru and browser accessibility checks). The 1.1
 composer is a draft surface; messaging and model calls remain scheduled below.
-Next: 1.2, shared event-contract hardening and Python JSON Schema export.
+Also implemented: 1.2, shared event-contract hardening, runtime wire validation,
+Python JSON Schema export and cross-language fixtures. Next: 1.3, authenticated
+messages, FakeProvider and resumable SSE backed by Redis Streams.
 
 | PR | Objective | Tests / acceptance |
 |---|---|---|
